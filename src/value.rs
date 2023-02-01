@@ -583,3 +583,15 @@ impl NBTInto<Map<String, Value>> for Option<Value> {
         self.unwrap_or(Value::Compound(Map::new())).nbt_into()
     }
 }
+
+impl NBTInto<bool> for Option<Value> {
+    fn nbt_into(self) -> Value {
+        self.unwrap_or(Value::Byte(0)).nbt_into()
+    }
+}
+
+impl NBTInto<bool> for Value {
+    fn nbt_into(self) -> bool {
+        self.as_byte().unwrap_or(0) != 0
+    }
+}
