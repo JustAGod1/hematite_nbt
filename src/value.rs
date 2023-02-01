@@ -4,6 +4,7 @@ use std::io;
 
 use byteorder::{BigEndian, ReadBytesExt, WriteBytesExt};
 
+use std::result::Result as StdResult;
 use error::{Error, Result};
 use raw;
 
