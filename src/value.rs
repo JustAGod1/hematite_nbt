@@ -259,89 +259,90 @@ impl Value {
         }
     }
 
-    pub fn as_byte(&self) -> Option<i8> {
+    pub fn as_byte(&self) -> StdResult<i8, String> {
         match self {
-            Value::Byte(v) => Some(*v),
-            _ => None,
+            Value::Byte(v) => Ok(*v),
+            _ => Err(format!("Expected Byte, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_short(&self) -> Option<i16> {
+    pub fn as_short(&self) -> StdResult<i16, String> {
         match self {
-            Value::Short(v) => Some(*v),
-            _ => None,
+            Value::Short(v) => Ok(*v),
+            _ => Err(format!("Expected Short, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_int(&self) -> Option<i32> {
+    pub fn as_int(&self) -> StdResult<i32, String> {
         match self {
-            Value::Int(v) => Some(*v),
-            _ => None,
+            Value::Int(v) => Ok(*v),
+            _ => Err(format!("Expected Int, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_long(&self) -> Option<i64> {
+    pub fn as_long(&self) -> StdResult<i64, String> {
         match self {
-            Value::Long(v) => Some(*v),
-            _ => None,
+            Value::Long(v) => Ok(*v),
+            _ => Err(format!("Expected Long, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_float(&self) -> Option<f32> {
+    pub fn as_float(&self) -> StdResult<f32, String> {
         match self {
-            Value::Float(v) => Some(*v),
-            _ => None,
+            Value::Float(v) => Ok(*v),
+            _ => Err(format!("Expected Float, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_double(&self) -> Option<f64> {
+    pub fn as_double(&self) -> StdResult<f64, String> {
         match self {
-            Value::Double(v) => Some(*v),
-            _ => None,
+            Value::Double(v) => Ok(*v),
+            _ => Err(format!("Expected Double, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_string(&self) -> Option<&String> {
+    pub fn as_string(&self) -> StdResult<String, String> {
         match self {
-            Value::String(v) => Some(v),
-            _ => None,
+            Value::String(v) => Ok(v.clone()),
+            _ => Err(format!("Expected String, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_byte_array(&self) -> Option<&Vec<i8>> {
+    pub fn as_byte_array(&self) -> StdResult<Vec<i8>, String> {
         match self {
-            Value::ByteArray(v) => Some(v),
-            _ => None,
+            Value::ByteArray(v) => Ok(v.clone()),
+            _ => Err(format!("Expected ByteArray, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_int_array(&self) -> Option<&Vec<i32>> {
+    pub fn as_int_array(&self) -> StdResult<Vec<i32>, String> {
         match self {
-            Value::IntArray(v) => Some(v),
-            _ => None,
+            Value::IntArray(v) => Ok(v.clone()),
+            _ => Err(format!("Expected IntArray, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_long_array(&self) -> Option<&Vec<i64>> {
+    pub fn as_long_array(&self) -> StdResult<Vec<i64>, String> {
         match self {
-            Value::LongArray(v) => Some(v),
-            _ => None,
+            Value::LongArray(v) => Ok(v.clone()),
+            _ => Err(format!("Expected LongArray, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_list(&self) -> Option<&Vec<Value>> {
+    pub fn as_list(&self) -> StdResult<Vec<Value>, String> {
         match self {
-            Value::List(v) => Some(v),
-            _ => None,
+            Value::List(v) => Ok(v.clone()),
+            _ => Err(format!("Expected List, found {}", self.tag_name())),
         }
     }
 
-    pub fn as_compound(&self) -> Option<&Map<String, Value>> {
+    pub fn as_compound(&self) -> StdResult<Map<String, Value>, String> {
         match self {
-            Value::Compound(v) => Some(v),
-            _ => None,
+            Value::Compound(v) => Ok(v.clone()),
+            _ => Err(format!("Expected Compound, found {}", self.tag_name())),
         }
     }
+
 }
 
 impl fmt::Display for Value {
