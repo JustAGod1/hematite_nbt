@@ -258,6 +258,90 @@ impl Value {
             Value::LongArray(la) => 4 /* arr size */ + size_of::<i64>()*la.len(),
         }
     }
+
+    pub fn as_byte(&self) -> Option<i8> {
+        match self {
+            Value::Byte(v) => Some(*v),
+            _ => None,
+        }
+    }
+
+    pub fn as_short(&self) -> Option<i16> {
+        match self {
+            Value::Short(v) => Some(*v),
+            _ => None,
+        }
+    }
+
+    pub fn as_int(&self) -> Option<i32> {
+        match self {
+            Value::Int(v) => Some(*v),
+            _ => None,
+        }
+    }
+
+    pub fn as_long(&self) -> Option<i64> {
+        match self {
+            Value::Long(v) => Some(*v),
+            _ => None,
+        }
+    }
+
+    pub fn as_float(&self) -> Option<f32> {
+        match self {
+            Value::Float(v) => Some(*v),
+            _ => None,
+        }
+    }
+
+    pub fn as_double(&self) -> Option<f64> {
+        match self {
+            Value::Double(v) => Some(*v),
+            _ => None,
+        }
+    }
+
+    pub fn as_string(&self) -> Option<&String> {
+        match self {
+            Value::String(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_byte_array(&self) -> Option<&Vec<i8>> {
+        match self {
+            Value::ByteArray(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_int_array(&self) -> Option<&Vec<i32>> {
+        match self {
+            Value::IntArray(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_long_array(&self) -> Option<&Vec<i64>> {
+        match self {
+            Value::LongArray(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_list(&self) -> Option<&Vec<Value>> {
+        match self {
+            Value::List(v) => Some(v),
+            _ => None,
+        }
+    }
+
+    pub fn as_compound(&self) -> Option<&Map<String, Value>> {
+        match self {
+            Value::Compound(v) => Some(v),
+            _ => None,
+        }
+    }
 }
 
 impl fmt::Display for Value {
