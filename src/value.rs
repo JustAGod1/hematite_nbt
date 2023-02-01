@@ -435,3 +435,81 @@ impl<'a> From<&'a [i64]> for Value {
         Value::LongArray(t.into())
     }
 }
+
+pub trait NBTInto<T> {
+    fn nbt_into(self) -> T;
+}
+
+impl NBTInto<i8> for Value {
+    fn nbt_into(self) -> i8 {
+        self.as_byte().unwrap_or(0)
+    }
+}
+
+impl NBTInto<i16> for Value {
+    fn nbt_into(self) -> i16 {
+        self.as_short().unwrap_or(0)
+    }
+}
+
+impl NBTInto<i32> for Value {
+    fn nbt_into(self) -> i32 {
+        self.as_int().unwrap_or(0)
+    }
+}
+
+impl NBTInto<i64> for Value {
+    fn nbt_into(self) -> i64 {
+        self.as_long().unwrap_or(0)
+    }
+}
+
+impl NBTInto<f32> for Value {
+    fn nbt_into(self) -> f32 {
+        self.as_float().unwrap_or(0.0)
+    }
+}
+
+impl NBTInto<f64> for Value {
+    fn nbt_into(self) -> f64 {
+        self.as_double().unwrap_or(0.0)
+    }
+}
+
+impl NBTInto<String> for Value {
+    fn nbt_into(self) -> String {
+        self.as_string().unwrap_or(String::new())
+    }
+}
+
+impl NBTInto<Vec<i8>> for Value {
+    fn nbt_into(self) -> Vec<i8> {
+        self.as_byte_array().unwrap_or(Vec::new())
+    }
+}
+
+impl NBTInto<Vec<i32>> for Value {
+    fn nbt_into(self) -> Vec<i32> {
+        self.as_int_array().unwrap_or(Vec::new())
+    }
+}
+
+impl NBTInto<Vec<i64>> for Value {
+    fn nbt_into(self) -> Vec<i64> {
+        self.as_long_array().unwrap_or(Vec::new())
+    }
+}
+
+impl NBTInto<Vec<Value>> for Value {
+    fn nbt_into(self) -> Vec<Value> {
+        self.as_list().unwrap_or(Vec::new())
+    }
+}
+
+impl NBTInto<Map<String, Value>> for Value {
+    fn nbt_into(self) -> Map<String, Value> {
+        self.as_compound().unwrap_or(Map::new())
+    }
+}
+
+
