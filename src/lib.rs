@@ -8,6 +8,7 @@ extern crate flate2;
 pub use blob::Blob;
 pub use error::{Error, Result};
 pub use value::Value;
+pub use value::NBTInto;
 
 #[cfg(feature = "preserve_order")]
 extern crate indexmap;
