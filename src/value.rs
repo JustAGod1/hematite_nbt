@@ -512,4 +512,74 @@ impl NBTInto<Map<String, Value>> for Value {
     }
 }
 
+impl NBTInto<i8> for Option<Value> {
+    fn nbt_into(self) -> i8 {
+        self.unwrap_or(Value::Byte(0)).nbt_into()
+    }
+}
 
+impl NBTInto<i16> for Option<Value> {
+    fn nbt_into(self) -> i16 {
+        self.unwrap_or(Value::Short(0)).nbt_into()
+    }
+}
+
+impl NBTInto<i32> for Option<Value> {
+    fn nbt_into(self) -> i32 {
+        self.unwrap_or(Value::Int(0)).nbt_into()
+    }
+}
+
+impl NBTInto<i64> for Option<Value> {
+    fn nbt_into(self) -> i64 {
+        self.unwrap_or(Value::Long(0)).nbt_into()
+    }
+}
+
+impl NBTInto<f32> for Option<Value> {
+    fn nbt_into(self) -> f32 {
+        self.unwrap_or(Value::Float(0.0)).nbt_into()
+    }
+}
+
+impl NBTInto<f64> for Option<Value> {
+    fn nbt_into(self) -> f64 {
+        self.unwrap_or(Value::Double(0.0)).nbt_into()
+    }
+}
+
+impl NBTInto<String> for Option<Value> {
+    fn nbt_into(self) -> String {
+        self.unwrap_or(Value::String(String::new())).nbt_into()
+    }
+}
+
+impl NBTInto<Vec<i8>> for Option<Value> {
+    fn nbt_into(self) -> Vec<i8> {
+        self.unwrap_or(Value::ByteArray(Vec::new())).nbt_into()
+    }
+}
+
+impl NBTInto<Vec<i32>> for Option<Value> {
+    fn nbt_into(self) -> Vec<i32> {
+        self.unwrap_or(Value::IntArray(Vec::new())).nbt_into()
+    }
+}
+
+impl NBTInto<Vec<i64>> for Option<Value> {
+    fn nbt_into(self) -> Vec<i64> {
+        self.unwrap_or(Value::LongArray(Vec::new())).nbt_into()
+    }
+}
+
+impl NBTInto<Vec<Value>> for Option<Value> {
+    fn nbt_into(self) -> Vec<Value> {
+        self.unwrap_or(Value::List(Vec::new())).nbt_into()
+    }
+}
+
+impl NBTInto<Map<String, Value>> for Option<Value> {
+    fn nbt_into(self) -> Map<String, Value> {
+        self.unwrap_or(Value::Compound(Map::new())).nbt_into()
+    }
+}
